@@ -1,0 +1,62 @@
+[project]
+name = "formatura-gio"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["django>=5.2", "django-vite>=3.1.0", "pillow>=11.1.0"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "pytest-django>=4.11.1",
+    "ruff>=0.11.4",
+    "taskipy>=1.14.1",
+]
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['PLC0415', 'PLC2801']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = 'core.settings'
+python_files = ['test*.py', '*_test.py', 'test_*.py']
+pythonpath = ['src']
+addopts = '-p no:warnings'
+
+[tool.taskipy.tasks]
+lint = 'ruff check'
+
+pre_format = 'ruff check --fix'
+format = 'ruff format'
+
+pre_makemigrations = 'task lint'
+makemigrations = 'docker-compose run --rm formatura_gio sh -c "python src/manage.py makemigrations"'
+
+pre_app = 'task lint'
+app = 'docker-compose run --rm formatura_gio bash -c "cd src && python manage.py startapp'
+
+pre_build = 'task lint'
+build = 'docker-compose up --build'
+
+pre_up = 'task lint'
+up = 'docker-compose up'
+
+pre_up-d = 'task lint'
+up-d = 'docker-compose up -d'
+
+down = 'docker-compose down'
+
+stop = 'docker-compose stop'
+
+restart = 'docker-compose restart'
