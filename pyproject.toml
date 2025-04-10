@@ -43,6 +43,7 @@ format = 'ruff format'
 pre_makemigrations = 'task lint'
 makemigrations = 'docker-compose run --rm formatura_gio sh -c "python src/manage.py makemigrations"'
 
+# Examplo de uso: task app meu_app
 pre_app = 'task lint'
 app = 'docker-compose run --rm formatura_gio bash -c "cd src && python manage.py startapp'
 
