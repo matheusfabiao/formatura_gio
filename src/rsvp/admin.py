@@ -9,7 +9,7 @@ class RSVPAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'companion',
-        'message',
+        'message_short',
         'confirmed',
         'confirmed_at',
     )
@@ -20,9 +20,17 @@ class RSVPAdmin(admin.ModelAdmin):
     actions = ['confirm', 'unconfirm']
 
     @admin.action(description='Confirmar')
-    def confirm(cls, request, queryset):
+    def confirm(self, request, queryset):  # noqa: PLR6301
         queryset.update(confirmed=True)
 
     @admin.action(description='Desconfirmar')
-    def unconfirm(cls, request, queryset):
+    def unconfirm(self, request, queryset):  # noqa: PLR6301
         queryset.update(confirmed=False)
+
+    # Método para exibir apenas os primeiros 20 caracteres da mensagem
+    def message_short(self, obj):  # noqa: PLR6301
+        return (
+            obj.message[:25] + '...' if len(obj.message) > 25 else obj.message
+        )
+
+    message_short.short_description = 'Mensagem'

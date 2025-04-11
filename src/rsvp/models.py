@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 class RSVP(models.Model):
+    """Modelo de confirmação de presença"""
+
     name = models.CharField(max_length=150, verbose_name='Nome Completo')
     companion = models.CharField(
         max_length=150,
@@ -19,9 +21,16 @@ class RSVP(models.Model):
     )
 
     class Meta:
+        """Define o nome do modelo no painel de administração"""
+
         verbose_name = 'Confirmação de Presença'
         verbose_name_plural = 'Confirmações de Presença'
 
     def __str__(self):
+        """Devolve uma representação em string do modelo
+
+        Returns:
+            str: nome do convidado e o status de confirmação
+        """
         status = 'Confirmado' if self.confirmed else 'Não Confirmado'
         return f'{self.name} - {status}'
