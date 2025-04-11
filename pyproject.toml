@@ -1,7 +1,7 @@
 [project]
 name = "formatura-gio"
 version = "0.1.0"
-description = "Add your description here"
+description = "Sistema web desenvolvido para gerenciar confirmações de presença e apresentar informações sobre a formatura de Giovanna Urquisa."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["django>=5.2", "django-vite>=3.1.0", "pillow>=11.1.0"]
@@ -35,29 +35,41 @@ pythonpath = ['src']
 addopts = '-p no:warnings'
 
 [tool.taskipy.tasks]
+# Executa verificação de código com Ruff
 lint = 'ruff check'
 
+# Executa correções automáticas antes da formatação
 pre_format = 'ruff check --fix'
+# Formata o código usando Ruff
 format = 'ruff format'
 
+# Executa lint antes de criar migrações
 pre_makemigrations = 'task lint'
+# Cria novas migrações do Django dentro do container
 makemigrations = 'docker-compose run --rm formatura_gio sh -c "python src/manage.py makemigrations"'
 
-# Examplo de uso: task app meu_app
+# Executa lint antes de criar novo app
+# Exemplo de uso: task app meu_app
 pre_app = 'task lint'
+# Cria um novo app Django dentro do container
 app = 'docker-compose run --rm formatura_gio bash -c "cd src && python manage.py startapp'
 
+# Executa lint antes de construir containers
 pre_build = 'task lint'
+# Constrói e inicia os containers
 build = 'docker-compose up --build'
 
+# Executa lint antes de iniciar containers
 pre_up = 'task lint'
+# Inicia os containers
 up = 'docker-compose up'
 
+# Executa lint antes de iniciar containers em modo daemon
 pre_up-d = 'task lint'
+# Inicia os containers em modo daemon (background)
 up-d = 'docker-compose up -d'
 
+# Para os containers antes de remover
+pre_down = 'docker-compose stop'
+# Remove os containers
 down = 'docker-compose down'
-
-stop = 'docker-compose stop'
-
-restart = 'docker-compose restart'
