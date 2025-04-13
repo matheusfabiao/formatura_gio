@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Matheus Fabião - Desenvolvedor Python Full Stack">
+    <meta name="description" content="Site de formatura da turma de Giovanna. Celebre conosco este momento especial com fotos, informações sobre a cerimônia, festa e momentos marcantes da nossa jornada acadêmica. Compartilhe memórias e participe desta importante conquista.">
+    <meta name="keywords" content="formatura, cerimônia de graduação, festa de formatura, álbum de fotos, convite de formatura, turma de formandos, Giovanna, memórias acadêmicas, celebração, colação de grau, baile de formatura">
+    <title>{% block title %}{% endblock title %}</title>
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    <header>
+        {% block header %}{% endblock header %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer>
+        {% block footer %}{% endblock footer %}
+    </footer>
+
+    {% block javascript %}{% endblock javascript %}
+</body>
+</html>
