@@ -6,11 +6,18 @@ class RSVP(models.Model):
     """Modelo de confirmação de presença"""
 
     name = models.CharField(max_length=150, verbose_name='Nome Completo')
+    email = models.EmailField(verbose_name='E-mail', unique=True)
     companion = models.CharField(
         max_length=150,
         verbose_name='Nome do Acompanhante',
         blank=True,
         null=True,
+    )
+    companion_email = models.EmailField(
+        verbose_name='E-mail do Acompanhante',
+        blank=True,
+        null=True,
+        unique=True,
     )
     message = models.TextField(
         verbose_name='Mensagem', blank=True, null=True, max_length=125

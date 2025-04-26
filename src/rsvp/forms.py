@@ -6,10 +6,19 @@ from .models import RSVP
 class RSVPForm(forms.ModelForm):
     class Meta:
         model = RSVP
-        fields = ['name', 'companion', 'message', 'confirmed']
+        fields = [
+            'name',
+            'email',
+            'companion',
+            'companion_email',
+            'message',
+            'confirmed',
+        ]
         labels = {
             'companion': 'Nome do Acompanhante (opcional)',
-            'confirmed': 'Estou ciente de meu compromisso',
+            'companion_email': 'E-mail do Acompanhante (opcional)',
+            'message': 'Mensagem (opcional)',
+            'confirmed': 'Estou ciente do meu compromisso',
         }
 
     def __init__(self, *args, **kwargs):

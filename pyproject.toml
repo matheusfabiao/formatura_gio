@@ -48,6 +48,11 @@ pre_makemigrations = 'task lint'
 # Cria novas migrações do Django dentro do container
 makemigrations = 'docker-compose run --rm formatura_gio sh -c "python src/manage.py makemigrations"'
 
+# Executa lint antes de executar migrações
+pre_migrate = 'task lint'
+# Executa migrações do Django dentro do container
+migrate = 'docker-compose run --rm formatura_gio sh -c "python src/manage.py migrate"'
+
 # Executa lint antes de criar novo app
 # Exemplo de uso: task app meu_app
 pre_app = 'task lint'

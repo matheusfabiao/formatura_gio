@@ -8,13 +8,15 @@ from .models import RSVP
 class RSVPAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'email',
         'companion',
+        'companion_email',
         'message_short',
         'confirmed',
         'confirmed_at',
     )
     list_filter = ('confirmed', 'confirmed_at')
-    search_fields = ('name', 'companion')
+    search_fields = ('name', 'companion', 'email', 'companion_email')
     readonly_fields = ('confirmed_at',)
     ordering = ('-confirmed_at',)
     actions = ['confirm', 'unconfirm']
