@@ -9,7 +9,7 @@ class RSVPForm(forms.ModelForm):
         fields = ['name', 'companion', 'message', 'confirmed']
         labels = {
             'companion': 'Nome do Acompanhante (opcional)',
-            'confirmed': 'Me comprometo em estar presente na cerimônia',
+            'confirmed': 'Estou ciente de meu compromisso',
         }
 
     def __init__(self, *args, **kwargs):
