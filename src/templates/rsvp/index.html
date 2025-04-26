@@ -2,7 +2,17 @@
 
 {% block content %}
 
-<h1>Bem vindo à Formatura da Gio!</h1>
-<p>Este site tem como objetivo facilitar a confirmação de presença para a formatura da Giovanna Urquisa. Aqui você poderá confirmar sua presença, ver as fotos marcantes da formatura e visualizar os presentes.</p>
+    <h1>Bem vindo à Formatura da Gio!</h1>
+    <p>Este site tem como objetivo facilitar a confirmação de presença para a formatura da Giovanna Urquisa. Aqui você poderá confirmar sua presença, ver as fotos marcantes da formatura e visualizar os presentes.</p>
+
+    <br><br>
+
+    <h2>Confirme sua presença</h2>
+    <p>Para confirmar sua presença, basta preencher os dados abaixo:</p>
+    <form action="{% url 'index' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Confirmar Presença</button>
+    </form>
 
 {% endblock content %}
